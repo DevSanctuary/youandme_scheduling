@@ -37,4 +37,12 @@ public class BoardController {
         return "board/list";
     }
 
+    //게시글 상세 페이지
+    @GetMapping("/board/detail")
+    public String boardDetail(Model model, Integer bno) {
+        model.addAttribute("board", boardService.boardDetail(bno));
+        return "board/detail";
+    }
+
+
 }

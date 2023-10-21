@@ -17,22 +17,30 @@
 </style>
 
 <body>
-
-  <div class="layout">
-      <table>
-          <thead>
-              <tr>
-                  <th>글번호</th>
-                  <th>제목</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr th:each="board : ${list}">
-                  <td th:text="${board.id}">1</td>
-                  <td th:text="${board.title}">제목입니다.</td>
-              </tr>
-          </tbody>
-      </table>
-  </div>
+    <div class="layout">
+        <table>
+            <thead>
+            <tr>
+                <th>글번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>등록일</th>
+                <th>수정일</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="board : ${list}">
+                <td th:text="${board.bno}">1</td>
+                <td>
+                    <a th:text="${board.title}" th:href="@{/board/detail(bno=${board.bno})}">제목입니다.</a>
+                </td>
+                <td th:text="${board.writer}">작성자</td>
+                <!-- Thymeleaf 3.0부터 #temporals를 사용하여 날짜 형식을 지정-->
+                <td th:text="${#temporals.format(board.regDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="${#temporals.format(board.updateDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
