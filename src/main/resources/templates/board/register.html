@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시물 작성폼</title>
+    <style>
+        .layout {
+            width: 500px;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+
+        .layout input, .layout textarea, .layout file-input {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .layout textarea {
+            width: 100%;
+            margin-top: 10px;
+            min-height: 300px;
+        }
+    </style>
+</head>
+<body>
+<div class="layout">
+    <!-- enctype="multipart/form-data" 파일 업로드-->
+    <form th:action="@{/board/register}" method="post" th:object="${board}" enctype="multipart/form-data">
+        <div>
+            <label for="title">제목:</label>
+            <!-- 프론트에서 입력 검증 : required-->
+            <input type="text" id="title" name="title" th:field="*{title}" required="required">
+        </div>
+
+        <div>
+            <label for="content">내용:</label>
+            <textarea id="content" name="content" th:field="*{content}" required="required"></textarea>
+        </div>
+        <div>
+            <label for="writer">작성자:</label>
+            <input type="text" id="writer" name="writer" th:field="*{writer}" required="required">
+        </div>
+        <div>
+            <label for="file">파일 업로드:</label>
+            <input type="file" id="file" name="file" accept="image/*" class="file-input">
+        </div>
+        <div>
+            <button type="submit">글 작성</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>게시글 등록</title>
+</head>
+  <script th:inline="javascript">
+      /*<![CDATA[*/
+    <!-- controller에 메시지를 담아서 alert로 보여줌 -->
+      var message = [[${message}]];
+      alert(message);
+    <!-- location 페이지로 이동 -->
+      location.replace([[${searchUrl}]]);
+      /*]]>*/
+  </script>
+</body>
+</html>

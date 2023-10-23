@@ -33,4 +33,11 @@ public class Board {
 
     @Column(name = "update_Date")
     private LocalDateTime updateDate;
+
+    @Column(name = "filename")
+    private String filename;
+
+    @Column(name = "filepath")
+    private String filepath;
+
 }
