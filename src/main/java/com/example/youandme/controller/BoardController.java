@@ -58,19 +58,21 @@ public class BoardController {
     // 게시글 목록 조회 페이지
     @GetMapping("/list")
     // 페이징 처리
-    public String list(Model model,
-                       @PageableDefault(page = 0, size = 10, sort = "bno", direction = Sort.Direction.DESC)
-                       Pageable pageable) {
+    public String boardList(Model model,
+                            @PageableDefault(page = 0, size = 10, sort = "bno", direction = Sort.Direction.DESC)
+                            Pageable pageable, String searchKeyword) {
 
-        Page<Board> list = boardService.boardList(pageable);
+        Page<Board> list = null;
 
-        //JPA의 Pageable은 0페이지가 기본
+        //검색 처리
+        if (searchKeyword == null) {
+            list = boardService.boardList(pageable);                        //검색 단어가 없는 경우, 그대로 목록 반환
+        } else {
+            list = boardService.boardSearchList(searchKeyword, pageable);   //검색 단어가 있는 경우, 검색 키워드 반환
+        }
+
         int nowPage = list.getPageable().getPageNumber() + 1;
-
-        //2개 매개 변수 중 최대값 반환
         int startPage = Math.max(nowPage - 4, 1);
-
-        //2개 매개 변수 중 최소값 반환
         int endPage = Math.min(nowPage + 9, list.getTotalPages());
 
         model.addAttribute("list", list);
