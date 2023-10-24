@@ -10,34 +10,40 @@
             margin: 0 auto;
             margin-top: 40px;
         }
+
     </style>
 </head>
 
 <body>
-<div class="layout">
-    <table>
-        <thead>
-        <tr>
-            <th>글번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>등록일</th>
-            <th>수정일</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="board : ${boardList}">
-            <td th:text="${board.bno}">1</td>
-            <td>
-                <a th:text="${board.title}" th:href="@{/board/detail/{bno}(bno=${board.bno})}">제목입니다.</a>
-            </td>
-            <td th:text="${board.writer}">작성자</td>
-            <!-- Thymeleaf 3.0부터 #temporals를 사용하여 날짜 형식을 지정-->
-            <td th:text="${#temporals.format(board.regDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
-            <td th:text="${#temporals.format(board.updateDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+    <div class="layout">
+        <table>
+            <thead>
+            <tr>
+                <th>글번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>등록일</th>
+                <th>수정일</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="board : ${list}">
+                <td th:text="${board.bno}">1</td>
+                <td>
+                    <a th:text="${board.title}" th:href="@{/board/detail/{bno}(bno=${board.bno})}">제목입니다.</a>
+                </td>
+                <td th:text="${board.writer}">작성자</td>
+                <!-- Thymeleaf 3.0부터 #temporals를 사용하여 날짜 형식을 지정-->
+                <td th:text="${#temporals.format(board.regDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="${#temporals.format(board.updateDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <!-- 태그로 감쌀 필요가 없을 때 th:block-->
+        <th:block th:each="page:${#numbers.sequence(startPage,endPage)}">
+            <a th:if="${page != nowPage}" th:href="@{/board/list(page=${page-1})}" th:text ="${page}"></a>
+            <strong th:if="${page==nowPage}" th:text ="${page}" style="color:red"></strong>
+        </th:block>
+    </div>
 </body>
 </html>

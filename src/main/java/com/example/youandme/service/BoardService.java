@@ -3,6 +3,8 @@ package com.example.youandme.service;
 import com.example.youandme.entity.Board;
 import com.example.youandme.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -54,8 +56,9 @@ public class BoardService {
     }
 
     // 게시글 목록 조회
-    public List<Board> boardList() {
-        return boardRepository.findAll();
+    public Page<Board> boardList(Pageable pageable) {
+
+        return boardRepository.findAll(pageable);
     }
 
     // 게시글 상세 조회

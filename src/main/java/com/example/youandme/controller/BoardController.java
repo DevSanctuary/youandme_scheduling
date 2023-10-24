@@ -3,6 +3,10 @@ package com.example.youandme.controller;
 import com.example.youandme.entity.Board;
 import com.example.youandme.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -54,10 +57,26 @@ public class BoardController {
 
     // 게시글 목록 조회 페이지
     @GetMapping("/list")
-    public String list(Model model) {
+    // 페이징 처리
+    public String list(Model model,
+                       @PageableDefault(page = 0, size = 10, sort = "bno", direction = Sort.Direction.DESC)
+                       Pageable pageable) {
 
-        List<Board> boardList = boardService.boardList();
-        model.addAttribute("boardList", boardList);
+        Page<Board> list = boardService.boardList(pageable);
+
+        //JPA의 Pageable은 0페이지가 기본
+        int nowPage = list.getPageable().getPageNumber() + 1;
+
+        //2개 매개 변수 중 최대값 반환
+        int startPage = Math.max(nowPage - 4, 1);
+
+        //2개 매개 변수 중 최소값 반환
+        int endPage = Math.min(nowPage + 9, list.getTotalPages());
+
+        model.addAttribute("list", list);
+        model.addAttribute("nowPage", nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 
         return "board/list";
     }
