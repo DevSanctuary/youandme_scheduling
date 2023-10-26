@@ -95,4 +95,4 @@
 
 # ERD  
 
-<img width="100%" src="https://github.com/seunghwan8899/youandme_schedule/assets/130161496/04c9c8a3-e9fd-4cf9-b892-872e17b19e09"/>
+![image](https://github.com/DevSanctuary/youandme_scheduling/assets/127717572/5b9a0fff-fafb-4222-9182-a39adad5d842)
