@@ -16,6 +16,7 @@
 - Back-end Developer 강경구
   - 게시판/채팅 기능 담당
 - Back-end Developer 전원식
+  - 수업등록 / 결제 기능 담당
 - Back-end Developer 김현정
   - 회원가입 / 로그인 기능 담당
   - 노션 관리
