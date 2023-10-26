@@ -11,7 +11,7 @@
 
 # 팀원소개
 
-- Back-end Developer 송승환
+- Back-end Developer 송승환 (팀장)
 - Back-end Developer 강경구
 - Back-end Developer 전원식
 - Back-end Developer 김현정
