@@ -1,17 +1,17 @@
 package com.project.youandme_schedule.signup.trainersignup;
 
 import com.project.youandme_schedule.trainer.Trainer;
-import lombok.NonNull;
+import com.sun.istack.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
 public interface TrainerSignUpRepository extends JpaRepository<Trainer, Long> {
-    @NonNull
+    @NotNull
     Optional<Trainer> findById(Long id);
-    @NonNull
+    @NotNull
     Optional<Trainer> findByEmail(String email);
-    @NonNull
+    @NotNull
     Optional<Trainer> findByPhone(String phone);
 
 }

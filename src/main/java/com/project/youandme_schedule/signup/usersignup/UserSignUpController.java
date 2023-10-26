@@ -1,5 +1,6 @@
 package com.project.youandme_schedule.signup.usersignup;
 
+import com.project.youandme_schedule.securityconfig.PasswordEncoderUtil;
 import com.project.youandme_schedule.user.User;
 import com.project.youandme_schedule.user.UserRepository;
 import com.project.youandme_schedule.verification.smsSender.SmsSender;
@@ -46,8 +47,11 @@ public class UserSignUpController {
         boolean isPhoneVerified = performPhoneVerification(verificationCode);
 
         if (isPhoneVerified) {
-            user.setName(user.getName());
+            String encodedPassword = PasswordEncoderUtil.encodePassword(user.getPassword());
+            user.setPassword(encodedPassword);
+
             userRepository.save(user);
+
             return ResponseEntity.ok("회원가입이 완료되었습니다.");
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("휴대폰 인증에 실패하였습니다.");
