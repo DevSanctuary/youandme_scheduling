@@ -9,7 +9,7 @@
 
 앞으로도 꾸준히 성장하는 개발천국이 되겠습니다.
 
-프로젝트 노션링크: https://www.notion.so/b4311ba5e8a344278868b874bb951cae?pvs=4
+- 프로젝트 노션링크: https://www.notion.so/b4311ba5e8a344278868b874bb951cae?pvs=4
 
 # 팀원소개
 
