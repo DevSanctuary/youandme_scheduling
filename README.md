@@ -13,7 +13,7 @@
 
 # 팀원소개
 
-- Back-end Developer 송승환 (팀장)
+- Back-end Developer 송승환
   - 일정등록 / 친구추가 기능 담당
 - Back-end Developer 강경구
   - 게시판/채팅 기능 담당
