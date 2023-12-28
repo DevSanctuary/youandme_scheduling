@@ -47,10 +47,9 @@
 
 # 사용 기술스택
 
-- Language : Java11
+- Language : Java 11
 - Framework : SpringBoot 2.7.16
 - Database : Mariadb, Redis
-- Docker, AWS
 - IDE : IntelliJ
 - Build: Gradle
 
